@@ -1,0 +1,18 @@
+.lgFormContainer{
+    background-color: white;
+    border-radius: 5px;
+    border:1px solid gray;
+    width: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.lgLogo{
+    width: 200px;
+    height: 200px;
+    background-image: url("../../../../public/favicon.png");
+    background-size: cover;
+    background-position: center;
+}
