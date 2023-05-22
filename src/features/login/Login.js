@@ -1,39 +1,48 @@
-import 'bootstrap/dist/css/bootstrap.css';
 import "../../global/styles/globalStyles.css";
 import "./utils/login.css"
 import { Link } from 'react-router-dom';
+import { DataContext } from '../../controllers/Context';
+import { useContext, useState } from 'react';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { Grid } from "@mui/material";
+import FlightTakeoffOutlinedIcon from '@mui/icons-material/FlightTakeoffOutlined';
+import FlightLandOutlinedIcon from '@mui/icons-material/FlightLandOutlined';
+import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 function Login() {
+const {Login} = useContext(DataContext);
+const[data,setData]=useState({username:"",password:""});
+
+function handleChange(event) {
+    const { name, value } = event.target
+    console.log(typeof(value))
+    setData({
+        ...data,
+        [name]: value
+    })
+}
   return (
-    <div className="container-fluid d-flex justify-content-center align-items-center">
-        <div class="row align-items-center" style={{position:"relative",top:"-25px"}}>
-            <div className='d-flex flex-column align-items-center'>
-                <div className="lgLogo mb-2"></div>
-                <div className='lgFormContainer'>
-                    <form style={{width:"330px"}}>
-                        <div class="mb-2">
-                            <label for="exampleInputEmail1" class="form-label">Username</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                        </div>
-                        <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"/>
-                        </div>
-                        <div className="d-flex justify-content-between">
-                            <div className="form-check d-flex align-items-center p-0">
-                                <input type="checkbox" className="form-check-input m-0" id="exampleCheck1"/>
-                                <label className="form-check-label my-0 ms-1 " style={{fontSize:"12px"}} for="exampleCheck1">Guardar contraseña</label>
-                            </div>
-                            <div className="d-flex align-items-center">
-                                <Link to="register"><p className="m-0"style={{fontSize:"12px"}}>Registrarse</p></Link>
-                            </div>
-                        </div>
-                    </form>
-                    <button type="submit" class="btn btn-primary my-2">Iniciar sesion</button>
-                </div>
-                
-            </div>
-        </div>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',width:"100%"}}>
+        <Grid container xd={4} md={4} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%"}}>
+                <Grid item xs={12} md={12}  style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%"}}>
+                    <TextField required id="departureAirport" name="username" label="Username" variant="standard"  />
+                </Grid>
+                <Grid item xs={12} md={12} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%"}}>
+                    <TextField required id="arrivalAirport" name="password" label="Password" variant="standard" />
+                </Grid>
+                <Grid item xs={12} md={12} style={{display: 'flex', justifyContent: 'end', alignItems: 'center', width:"100%"}}>
+                    <Link to={"/registrarse"}>Registrarse</Link>
+                </Grid>
+                <Grid item xs={12} md={12} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%"}}>
+                    <Button style={{color: "white"}} variant="contained" color="secondary" onClick={() => {Login(data.username,data.password)}}>Iniciar Sesion</Button>
+                </Grid>
+        </Grid>
     </div>
   );
 }
