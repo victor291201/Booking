@@ -25,13 +25,13 @@ const CardAirline = (props) =>{
                             
                         </Grid>
 
-                        <Grid item xs={6}>
+                        <Grid item xs={6} >
 
-                            <Typography sx={{ fontSize: 16 }} gutterBottom>
+                            <Typography sx={{ fontSize: 16 }} gutterBottom style={{textAlign:"end"}}>
                                 ARRIVAL
                             </Typography>
 
-                            <Typography sx={{ fontSize: 20 }} color="primary" gutterBottom>
+                            <Typography sx={{ fontSize: 20 }} color="primary" gutterBottom style={{textAlign:"end"}}>
                                 {props.arrivalAirportHour}
                             </Typography>
 
@@ -42,9 +42,9 @@ const CardAirline = (props) =>{
 
                     <Divider />
 
-                    <Grid container spacing={2}  justifyContent="space-evenly" marginTop={1} marginBottom={2}>
+                    <Grid container spacing={2}  justifyContent="space-between" marginTop={1} marginBottom={2}>
 
-                        <Grid item marginLeft={4}>
+                        <Grid item marginLeft={4} style={{margin:"0px"}}>
                             <FlightTakeoffOutlinedIcon sx={{fontSize: 30 }} color="primary" />
                             <Typography sx={{ fontSize: 16 }} color="primary" gutterBottom>
                                 {props.departureAirportCode}
@@ -58,8 +58,8 @@ const CardAirline = (props) =>{
                             </Typography>
                         </Grid>
 
-                        <Grid item marginRight={4}>
-                            <FlightLandOutlinedIcon sx={{fontSize: 30 }} color="primary" />
+                        <Grid item marginRight={4} style={{margin:"0px"}}>
+                            <FlightLandOutlinedIcon sx={{fontSize: 30 }} color="primary"/>
                             <Typography sx={{ fontSize: 16 }} color="primary" gutterBottom>
                                 {props.arrivalAirportCode}
                             </Typography>
@@ -75,7 +75,7 @@ const CardAirline = (props) =>{
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Typography sx={{ fontSize: 16 }} gutterBottom>
+                            <Typography sx={{ fontSize: 16 }} gutterBottom  style={{textAlign:"end"}}>
                                 Flight {props.flightNumber}
                             </Typography>
                         </Grid>
