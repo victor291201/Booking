@@ -40,7 +40,7 @@ function handleChange(event) {
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',width:"100%",background:"white"}}>
         <Grid container style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"400px",height:"400px",background:"#F4F4F4",borderRadius:"5px",padding:"20px"}}>
                 <Typography variant="h4" gutterBottom color="primary" style={{margin:"0px"}}>
-                    Log Ing
+                    Log In
                 </Typography>
                 <Grid item xs={12} md={12}  style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%"}}>
                     <TextField id="departureAirport" name="username" onChange={(e)=>handleChange(e)} label="Username" variant="standard" style={{width:"100%"}}/>
