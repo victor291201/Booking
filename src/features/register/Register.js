@@ -1,5 +1,5 @@
 import "../../global/styles/globalStyles.css";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -11,46 +11,46 @@ import FlightTakeoffOutlinedIcon from '@mui/icons-material/FlightTakeoffOutlined
 import FlightLandOutlinedIcon from '@mui/icons-material/FlightLandOutlined';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { DataContext } from "../../controllers/Context";
+import { redirect, useNavigate } from "react-router-dom";
 
 function Register() {
+    const navigate = useNavigate();
     const[data,setData]=useState({
-        firstName:"",lastName:"",
-        userName:"",password:"",
-        date:"",telefono:"",
+        username:"",
+        email:"",
+        password:""
     });
+    const {Register,GlobalState} = useContext(DataContext);
+    async function register() {
+        var res = await Register(data);
+        if(res.data){
+            console.log("llegue")
+            navigate("/")
+        }
+    }
     function handleChange(event) {
         const { name, value } = event.target
-        console.log(typeof(value))
         setData({
             ...data,
             [name]: value
         })
     }
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',width:"100%"}}>
-        <Grid container xd={4} md={4} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%"}}>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',width:"100%",background:"white"}}>
+        <Grid container style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"400px",height:"400px",background:"#F4F4F4",borderRadius:"5px",padding:"20px"}}>
+                <Typography variant="h4" gutterBottom color="primary" style={{margin:"0px"}}>
+                    Sign In
+                </Typography>
                 <Grid item xs={12} md={12}  style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%"}}>
-                    <TextField required id="arrivalAirport" name="firstName" label="First Name" variant="standard" />
-                    <TextField required id="departureAirport" name="lastName" label="Last Name" variant="standard"  />
+                    <TextField required onChange={(e)=>handleChange(e)} id="arrivalAirport" name="username" label="Username" variant="standard" style={{marginRight:"10px"}}/>
+                    <TextField required onChange={(e)=>handleChange(e)} id="departureAirport" name="email" label="Email" variant="standard"  style={{marginLeft:"10px"}} />
+                </Grid>
+                <Grid item xs={12} md={12} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%", marginBottom:"54px"}}>
+                    <TextField required onChange={(e)=>handleChange(e)} id="arrivalAirport" name="password" label="Password" variant="standard"  style={{marginRight:"10px",width:"100%"}}/>
                 </Grid>
                 <Grid item xs={12} md={12} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%"}}>
-                    <TextField required id="arrivalAirport" name="username" label="Username" variant="standard" />
-                    <TextField required id="arrivalAirport" name="password" label="Password" variant="standard" />
-                </Grid>
-                <Grid item xs={12} md={12} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%"}}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <MobileDatePicker
-                            id="departureDate"
-                            label="Fecha De Nacimiento"
-                            value={data.date}
-                            onChange={handleChange}
-                            inputFormat="EEEE, MMM d, yyyy"
-                            renderInput={(params) => <TextField {...params} variant="standard"/> }/>
-                        </LocalizationProvider>  
-                    <TextField required id="arrivalAirport" name="telefono" label="Telefono" variant="standard" />
-                </Grid>
-                <Grid item xs={12} md={12} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width:"100%"}}>
-                    <Button style={{color: "white"}} variant="contained" color="secondary" onClick={() => {alert("hey")}}>Registrarse</Button>
+                    <Button style={{color: "white"}} variant="contained" color="secondary" onClick={() => {register()}}>Submit</Button>
                 </Grid>
         </Grid>
     </div>

@@ -1,26 +1,28 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import { Grid, TextField, Button } from "@mui/material";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { Link } from 'react-router-dom';
+import { DataContext } from '../../controllers/Context';
 
 const NavBar = (props) => {
 
+    const {GlobalState} = useContext(DataContext);
   return (
     <div>
-        <AppBar position="fixed">
+        <AppBar position="fixed" style={{background:"#F4F4F4",padding:"10px 0px",boxShadow:"none"}}>
           <Toolbar disableGutters>
-            <Grid style={{display:"flex", justifyContent:"center", width:'100%', paddingTop:"10px"}}>
+            <Grid style={{display:"flex", justifyContent:"center", width:'100%'}}>
                     <Grid item xs={3} md={3} style={{paddingRight:'2%'}}>
-                        <TextField                              
+                        <TextField                       
                                 id="departureAirport"
                                 label="From"
-                                value={props.departureAirportCode}
+                                value={GlobalState.data.departure}
                                 InputProps={{ style:{
-                                    readOnly: true,
-                                    color: '#00F890',
+                                    readOnly: true
                                 }}}
                                 variant="standard"/>
                     </Grid>
@@ -29,12 +31,12 @@ const NavBar = (props) => {
                         <TextField
                             id="arrivalAirport"
                             name="arrivalAirport"
-                            value={props.arrivalAirportCode}
                             label="To"
+                            value={GlobalState.data.arrival}
                             InputProps={{ style:{
-                                readOnly: true,
-                                color: '#00F890',
+                                readOnly: true
                             }}}
+                            focused
                             variant="standard"/>
                     </Grid>
 
@@ -43,7 +45,7 @@ const NavBar = (props) => {
                             <MobileDatePicker
                                 id="departureDate"
                                 name="departureDate"
-                                value={props.departureDate}
+                                value={new Date(GlobalState.data.date)}
                                 label="Date"
                                 inputFormat="EEEE, MMM d, yyyy"
                                 renderInput={(params) => 
@@ -57,9 +59,9 @@ const NavBar = (props) => {
                     </Grid>
 
                     <Grid item xs={3} md={3} sx={{margin:'10px'}}>
-                        <Button component="a" href="/">
-                            Atrás
-                        </Button>
+                        <Link to={"/"} style={{height:"100%",display:"flex",alignItems:"center",textDecoration:"none",color:"#9c27b0"}}>
+                            ATRAS
+                        </Link>
                     </Grid>
 
                 </Grid>
