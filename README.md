@@ -1,4 +1,4 @@
-Project of my portfolio elaborated in react, with the collaboration of my friend [EdgardoDJN](https://github.com/EdgardoDJN), in the [Backend](https://github.com/EdgardoDJN2).
+Project of my portfolio elaborated in react, with the collaboration of my friend [EdgardoDJN](https://github.com/EdgardoDJN), in the [Backend](https://github.com/EdgardoDJN/BackendSpringBootBooking).
 If you want to try it, use the following credentials:
 ___
 Username: victor291201
